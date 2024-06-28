@@ -1,0 +1,311 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;0,700;1,200;1,400&display=swap');
+*,
+*::after,
+*::before {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: 'Montserrat', sans-serif;
+
+}
+
+.nav-container{
+  box-shadow: 0.5 0.5 20 10 rgb(209, 207, 207);
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 4rem;
+  align-items: center;
+}
+
+.logo img{
+    width: 10rem;
+}
+
+.nav-items > ul{
+    display: flex;
+}
+
+.nav-items > ul > li{
+    list-style-type: none;
+    margin-right: 3rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #39393abf;
+    display: flex;
+    align-items: center;
+}
+
+.nav-items > ul >li:hover{
+    transition: all 0.5s ease-in-out;
+    color:#fa8427;
+    cursor: pointer;
+}
+
+.nav-icon-img img{
+    width: 20px;
+    margin-right: 0.5rem;
+}
+
+
+
+.card:hover{
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: all 0.2s ease-in-out;
+}
+
+.card{
+    height: 300px;
+    margin: 1rem;
+}
+
+.card .card-img img{
+    width: 100%;
+    height: 150px;   
+    border-radius: 5%;
+    object-fit: cover;
+}
+
+
+
+.online-res-container .card-container{
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    gap: 1rem;
+    height: 100vh;
+}
+
+.card-heading h2{
+    color: #414449;
+    font-size: 1rem;
+}
+
+
+.cousine p{
+    font-size: 16px;
+    font-weight: 200;
+    line-height: 19px;
+    letter-spacing: -0.3px;
+    color: #02060c99;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-text{
+    width: 95%;
+    margin: 2rem auto;
+}
+
+
+.resInfo{
+    display: flex;
+}
+
+.starImg img{
+    width: 1.5rem;
+}
+
+.resInfo  h2{
+    font-size: 1rem;
+    color: #414449;
+}
+
+.areaName p{
+    font-size: 16px;
+    font-weight: 200;
+    line-height: 19px;
+    letter-spacing: -0.3px;
+    color: #02060c99;
+}
+
+.top-res-container{
+    width: 80%;
+    margin: auto;
+    padding: 4rem 0px;
+}
+
+
+.card-res-heading h1{
+    font-weight: 800;
+    font-size: 1.5rem;
+    line-height: 1.8rem;
+    letter-spacing: -0.4px;
+    color: rgba(2, 6, 12, 0.92);
+}
+
+.card-res-heading{
+    display: flex;
+    padding: 1rem 0px;
+    align-self: center;
+}
+
+.online-res-container{
+    width: 80%;
+    margin: auto;
+}
+
+.card-img{
+    position: relative;
+}
+
+.img::before{
+    content: "";
+    height: 97%;
+    border-radius: 5%;
+    width: 100%;
+    position: absolute;
+    background-image: linear-gradient(to top, rgba(2, 2, 2, 0.886), rgba(252, 250, 250, 0))
+}
+
+.discount{
+    position: absolute;
+    bottom: 0;
+    font-weight: 800;
+    font-size: 20px;
+    line-height: 22px;
+    letter-spacing: -0.5px;
+    color: rgba(255, 255, 255, 0.92);
+    margin:0.5rem;
+    width: 100%;
+    overflow: hidden;
+}
+
+
+/* .................. shimmer ................. */
+
+.shimmer-container{
+    width: 80%;
+    height: 200vh;
+    margin: auto;
+}
+
+.shimmer-heading{
+    width: 100%;
+    height: 2rem;
+    background-color: #d7d9d9;
+    margin: 2rem 0px;
+}
+
+.shimmer-top-card{
+    /* display: flex;
+    flex-wrap: wrap; */
+   display: grid;
+   grid-template-columns: repeat(3,1fr);
+   gap: 1rem;
+}
+
+.shimmer-cards{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+
+.shimmer-card{
+    background-color: #d7d9d9;
+    height: 250px;
+}
+
+.shimmer-img{
+    width: 90%;
+    background-color: #c7caca;
+    margin: 1rem auto;
+    height: 50%;
+    border-radius: 5%;
+}
+
+.shimmer-card-text{
+    width: 90%;
+    margin: auto;
+}
+.text{
+    width: 100%;
+    height: 1rem;
+    background-color: #c7caca;
+    margin: 1rem 0px;
+}
+.text2{
+    width: 80%;
+    height: 1rem;
+    background-color: #c7caca;
+    margin: 1rem 0px;
+}
+.text3{
+    width: 50%;
+    height: 1rem;
+    background-color: #c7caca;
+    margin: 1rem 0px;
+}
+
+/* ..................................................... */
+
+.search-box{
+    /* border: 2px solid black; */
+    margin-left: 2rem;
+    width: 30%;
+}
+
+.search{
+    width: 70%;
+    outline: none;
+    border: 1px solid black;
+    height: 90%;
+    margin-right: 0.5rem;
+    font-size: 1rem;
+    border-radius: 20px;
+    padding: 0.5rem;
+}
+
+.search-btn{
+    padding: 0.7rem 1.2rem;
+    border-radius: 20px;
+    outline: none;
+    border: none;
+    background-color: #fa8427;
+    font-weight: 700;
+    color: white;
+}
+
+
+.carousel-container{
+    width: 80%;
+    margin: 2rem auto;
+}
+
+.carousel-heading{
+    font-weight: 800;
+    font-size: 0.8rem;
+    line-height: 1.8rem;
+    letter-spacing: -0.4px;
+    color: rgba(2, 6, 12, 0.92);
+}
+
+.menu-card{
+    width: 100%;
+}
+
+.menu-card{
+    width: 100%;
+}
+.menu-card-img img{
+    width: 100%;
+}
+
+.react-multi-carousel-list{
+    width: 100%;
+}
+
+.menu-card-container{
+    width: 100%;
+}
+
+.error-container{
+    color: red;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin: 4rem;
+}
