@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { API_DATA } from "../utils/link";
 import HederMenuCard from "./HederMenuCard";
 import Carousel from "react-multi-carousel";
 
@@ -18,7 +17,7 @@ function CarouselMenu() {
 
     // ..... filter the data my swiggy api ...........
     const filterMenuData = jsonData.data.cards.filter((f) => {
-      return f.card.card.id == "whats_on_your_mind";
+      return f.card.card.id === "whats_on_your_mind";
     });
     console.log(filterMenuData, "filterMenuData");
     // ......................................................

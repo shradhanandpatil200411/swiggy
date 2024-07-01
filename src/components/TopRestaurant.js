@@ -18,7 +18,7 @@ function TopRestaurant() {
     const topResData = await data.json();
 
     const filterTopData = topResData.data.cards.filter((f) => {
-      return f.card.card.id == "top_brands_for_you";
+      return f.card.card.id === "top_brands_for_you";
     });
     console.log(filterTopData, "filterTopData");
 
@@ -45,6 +45,7 @@ function TopRestaurant() {
       slidesToSlide: 1, // optional, default to 1.
     },
   };
+  // eslint-disable-next-line no-lone-blocks
   {
     return topRestaurant.length === 0 ? (
       <Shimmer />

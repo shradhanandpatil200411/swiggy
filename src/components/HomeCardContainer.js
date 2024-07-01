@@ -17,7 +17,7 @@ const CardContainer = () => {
     );
     const jsonData = await data.json();
     const filterOnlineData = jsonData.data.cards.filter((f) => {
-      return f.card.card.id == "restaurant_grid_listing";
+      return f.card.card.id === "restaurant_grid_listing";
     });
     console.log(filterOnlineData, "filterOnlineData");
     setRestaurantData(
@@ -28,6 +28,7 @@ const CardContainer = () => {
     );
   };
 
+  // eslint-disable-next-line no-lone-blocks
   {
     return restaurantData.length === 0 ? (
       <Shimmer />
@@ -60,7 +61,7 @@ const CardContainer = () => {
           </div>
         </div>
         <div className="card-container">
-          {filterRestaurantData == 0 ? (
+          {filterRestaurantData === 0 ? (
             <h1 style={{ color: "#fa8427" }}>Sorry No Data Found</h1>
           ) : (
             filterRestaurantData.map((restaurant) => {

@@ -6,6 +6,7 @@ import help from "../img/icon/icons8-help-50.png";
 import signIn from "../img/icon/icons8-sign-in-50.png";
 import card from "../img/icon/icons8-cart-50.png";
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 const Navbar = () => {
   const [login, setLogin] = useState("LogOut");
   return (
@@ -16,44 +17,56 @@ const Navbar = () => {
       <div className="nav-items">
         <ul>
           <li>
-            <div className="nav-icon-img">
-              <img src={corporate} alt="corporate" />
-            </div>
-            Swiggy Corporate
+            <NavLink className="navlink" to="corporate">
+              <div className="nav-icon-img">
+                <img src={corporate} alt="corporate" />
+              </div>
+              Swiggy Corporate
+            </NavLink>
           </li>
           <li>
-            <div className="nav-icon-img">
-              <img src={search} alt="search" />
-            </div>
-            Search
+            <NavLink className="navlink" to="search">
+              <div className="nav-icon-img">
+                <img src={search} alt="search" />
+              </div>
+              Search
+            </NavLink>
           </li>
           <li>
-            <div className="nav-icon-img">
-              <img src={offer} alt="offer" />
-            </div>
-            Offers
+            <NavLink className="navlink" to="offer">
+              <div className="nav-icon-img">
+                <img src={offer} alt="offer" />
+              </div>
+              Offers
+            </NavLink>
           </li>
           <li>
-            <div className="nav-icon-img">
-              <img src={help} alt="help" />
-            </div>
-            Help
+            <NavLink className="navlink" to="help">
+              <div className="nav-icon-img">
+                <img src={help} alt="help" />
+              </div>
+              Help
+            </NavLink>
           </li>
           <li
             onClick={() => {
-              login == "LogOut" ? setLogin("LogIn") : setLogin("LogOut");
+              login === "LogOut" ? setLogin("LogIn") : setLogin("LogOut");
             }}
           >
-            <div className="nav-icon-img">
-              <img src={signIn} alt="signIn" />
-            </div>
-            {login}
+            <NavLink className="navlink" to="login">
+              <div className="nav-icon-img">
+                <img src={signIn} alt="signIn" />
+              </div>
+              {login}
+            </NavLink>
           </li>
           <li>
-            <div className="nav-icon-img">
-              <img src={card} alt="card" />
-            </div>
-            Cart
+            <NavLink to="card" className="navlink">
+              <div className="nav-icon-img">
+                <img src={card} alt="card" />
+              </div>
+              Cart
+            </NavLink>
           </li>
         </ul>
       </div>
