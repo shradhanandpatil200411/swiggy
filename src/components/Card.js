@@ -50,4 +50,17 @@ const Card = ({
   );
 };
 
+export const isOpen = (Card) => {
+  return (props) => {
+    return (
+      <div>
+        <p className="text-white bg-green-500 px-3 py-2 w-16 rounded-lg absolute z-10">
+          Open
+        </p>
+        <Card {...props} />
+      </div>
+    );
+  };
+};
+
 export default Card;

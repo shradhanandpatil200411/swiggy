@@ -7,6 +7,10 @@
     box-sizing: border-box;
 }
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 
 body {
     font-family: 'Montserrat', sans-serif;
@@ -311,4 +315,338 @@ body {
     justify-content: center;
     text-align: center;
     margin: 4rem;
+}
+
+/* ................ restaurant-container ......................... */
+
+.restaurant-container{
+    width: 60%;
+    margin: 2rem auto;
+}
+
+.small-navbar > ul {
+    display: flex;
+}
+
+.small-nav-name{
+    color: #414449;
+    font-weight: 600;
+}
+
+li{
+    list-style: none;
+}
+
+.small-navbar >ul >li{
+   font-size: 0.7rem;
+   cursor: pointer;
+}
+
+.small-nav{
+    text-decoration: none;
+    color: grey;
+}
+
+.resHeading{
+    margin: 2rem 1rem;
+    font-weight: 800;
+    font-size: 0.9rem;
+    letter-spacing: -0.4px;
+    color: rgba(2, 6, 12, 0.92);
+}
+
+.restaurant-menu-card{
+    margin: 0px 1rem;
+    padding: 1rem;
+    border-radius: 20px;
+    box-shadow: 10px 10px 20px 1px rgb(117, 117, 117);
+    border: 0.5px solid rgb(117, 117, 117);
+}
+
+.rating{
+    display: flex;
+    align-items: center;
+}
+
+.starImg{
+    display: flex;
+    align-items: center;
+}
+.menu-rating{
+    margin-left: 0.5rem;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    letter-spacing: -0.3px;
+    color: rgba(2, 6, 12, 0.92)
+}
+.const-for-two{
+    margin-left: 1rem;
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 19px;
+    letter-spacing: -0.3px;
+    color: rgba(2, 6, 12, 0.92)
+}
+
+.res-category h3{
+    text-decoration: underline;
+    color: rgb(241, 87, 0);
+    font-weight: 700;
+    font-size: 0.8rem;
+    margin: 0.5rem 0px;
+}
+
+.delivery-time h2{ 
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: -0.3px;
+    color: rgba(2, 6, 12, 0.92)
+}
+
+.delivery-time{
+    display: flex;
+}
+
+.rest-loc{
+    display: flex;
+}
+
+.loc{
+    text-align: center;
+    max-width: 70%;
+    margin-left: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color:gray;
+    font-size: 14px;
+}
+
+.time{
+    margin-top: 1rem;
+}
+
+.delivery-loc-logo{
+    display: flex;
+    flex-direction: column;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-right: 0.3rem;
+}
+.start-point{
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgb(196, 196, 196)
+}
+
+.middle-point{
+    width: 1px;
+    height: 32px;
+    background: rgb(196, 196, 196);
+}
+
+.end-point {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgb(196, 196, 196)
+}
+
+.delivery-charges{
+    display: flex;
+    border-top: 1px solid rgb(196, 196, 196);
+    margin-top: 1rem;
+    padding-top: 0.5rem;
+    align-items: center;
+}
+
+.charges{
+    font-weight: 200;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: -0.3px;
+    color: rgba(2, 6, 12, 0.6);
+}
+
+.delivery-logo img{
+    width: 1.5rem;
+    margin-right: 0.5rem;
+}
+
+
+.deals-offers{
+    margin-top: 2rem;
+    padding: 0.5rem;
+}
+
+.offer-heading h1{
+    margin: 0px;
+    font-weight: 800;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: -0.3px;
+    color: rgba(2, 6, 12, 0.92);
+    overflow: hidden;
+    width: 100%;
+    display: -webkit-box;
+    overflow-wrap: break-word;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.offer-card{
+    border: 1px solid gray;
+    display: flex;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    justify-content: space-between;
+    margin-left: 1rem;
+}
+
+.offer-logo img{
+    width: 3rem;
+}
+
+.offer-heading h1{
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 20px;
+    letter-spacing: -0.3px;
+    color: rgba(2, 6, 12, 0.92);
+    overflow: hidden;
+    width: 100%;
+    display: -webkit-box;
+    overflow-wrap: break-word;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.offer-heading p{
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: -0.3px;
+    color: rgba(2, 6, 12, 0.45);
+    overflow: hidden;
+    width: 100%;
+    display: -webkit-box;
+    overflow-wrap: break-word;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    margin-top: 0.2rem;
+}
+
+.nav-link{
+    text-decoration: none;
+}
+
+.menu-heading{
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.menu-heading h2{
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 16px;
+    letter-spacing: -0.3px;
+    color: rgba(2, 6, 12, 0.6);
+    letter-spacing: 4px;
+}
+
+.menu-search-bar input{
+    border: none;
+    width: 100%;
+    padding: 1rem 1rem;
+    border-radius: 10px;
+    outline: none;
+    background: #f0f0f5;
+    margin-top: 1rem;
+    font-size: 1rem;    
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+    margin: 0.3rem;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 12px;
+    width: 12px;
+    left: 4px;
+    bottom: 5px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked+.slider {
+    background-color: green;
+}
+
+input:checked+.non-veg{
+    background-color: red;
+}
+
+input:focus+.slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked+.slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(20px);
+}
+
+.menu-filter{
+    display: flex;
+    margin-top: 1rem;
+}
+
+.filter{
+    border: 1px solid gray;
+    border-radius: 20px;
+    padding: 0.5rem 0.9rem;
+    margin-right: 1rem;
+    text-align: center;
+    cursor: pointer;
+    align-items: center;
+    align-self: center;
+}
+
+.filter span{
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: gray ;
+}
+
+.res-menu-card{
+    border-top: 1px solid gray;
+    margin-top: 2rem;
 }

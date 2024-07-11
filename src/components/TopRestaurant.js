@@ -3,6 +3,7 @@ import Card from "./Card";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import Shimmer from "../page/Shimmer";
+import { NavLink } from "react-router-dom";
 
 function TopRestaurant() {
   const [topRestaurant, setTopRestaurant] = useState([]);
@@ -75,21 +76,26 @@ function TopRestaurant() {
           >
             {topRestaurant.map((topRes) => {
               return (
-                <Card
+                <NavLink
+                  to={"restaurant/" + topRes.info.id}
                   key={topRes.info.id}
-                  resName={topRes.info.name}
-                  cuisines={topRes.info.cuisines}
-                  cardImg={topRes.info.cloudinaryImageId}
-                  starRating={topRes.info.avgRating}
-                  time={topRes.info.sla.deliveryTime}
-                  areaName={topRes.info.areaName}
-                  DiscountHeader={
-                    topRes?.info?.aggregatedDiscountInfoV3?.header
-                  }
-                  DiscountSubheader={
-                    topRes?.info?.aggregatedDiscountInfoV3?.subHeader
-                  }
-                />
+                  className="nav-link"
+                >
+                  <Card
+                    resName={topRes.info.name}
+                    cuisines={topRes.info.cuisines}
+                    cardImg={topRes.info.cloudinaryImageId}
+                    starRating={topRes.info.avgRating}
+                    time={topRes.info.sla.deliveryTime}
+                    areaName={topRes.info.areaName}
+                    DiscountHeader={
+                      topRes?.info?.aggregatedDiscountInfoV3?.header
+                    }
+                    DiscountSubheader={
+                      topRes?.info?.aggregatedDiscountInfoV3?.subHeader
+                    }
+                  />
+                </NavLink>
               );
             })}
           </Carousel>

@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
-// import restaurantData from "../utils/dameData";
-import Card from "./Card";
+import Card, { isOpen } from "./Card";
 import Shimmer from "../page/Shimmer";
+import { NavLink } from "react-router-dom";
 
 const CardContainer = () => {
   const [search, setSearch] = useState("");
   const [restaurantData, setRestaurantData] = useState([]);
   const [filterRestaurantData, setFilterRestaurantData] = useState([]);
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -19,7 +20,7 @@ const CardContainer = () => {
     const filterOnlineData = jsonData.data.cards.filter((f) => {
       return f.card.card.id === "restaurant_grid_listing";
     });
-    console.log(filterOnlineData, "filterOnlineData");
+
     setRestaurantData(
       filterOnlineData[0]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
@@ -27,6 +28,8 @@ const CardContainer = () => {
       filterOnlineData[0]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   };
+
+  const IsOpenHigherOrderFun = isOpen(Card);
 
   // eslint-disable-next-line no-lone-blocks
   {
@@ -66,21 +69,43 @@ const CardContainer = () => {
           ) : (
             filterRestaurantData.map((restaurant) => {
               return (
-                <Card
+                <NavLink
+                  to={"restaurant/" + restaurant?.info?.id}
                   key={restaurant?.info?.id}
-                  resName={restaurant?.info?.name}
-                  cuisines={restaurant?.info?.cuisines}
-                  cardImg={restaurant?.info?.cloudinaryImageId}
-                  starRating={restaurant?.info?.avgRating}
-                  time={restaurant?.info?.sla?.deliveryTime}
-                  areaName={restaurant?.info?.areaName}
-                  DiscountHeader={
-                    restaurant?.info?.aggregatedDiscountInfoV3?.header
-                  }
-                  DiscountSubheader={
-                    restaurant?.info?.aggregatedDiscountInfoV3?.subHeader
-                  }
-                />
+                  className="nav-link"
+                >
+                  {restaurant?.info?.isOpen ? (
+                    <IsOpenHigherOrderFun
+                      resName={restaurant?.info?.name}
+                      cuisines={restaurant?.info?.cuisines}
+                      cardImg={restaurant?.info?.cloudinaryImageId}
+                      starRating={restaurant?.info?.avgRating}
+                      time={restaurant?.info?.sla?.deliveryTime}
+                      areaName={restaurant?.info?.areaName}
+                      DiscountHeader={
+                        restaurant?.info?.aggregatedDiscountInfoV3?.header
+                      }
+                      DiscountSubheader={
+                        restaurant?.info?.aggregatedDiscountInfoV3?.subHeader
+                      }
+                    />
+                  ) : (
+                    <Card
+                      resName={restaurant?.info?.name}
+                      cuisines={restaurant?.info?.cuisines}
+                      cardImg={restaurant?.info?.cloudinaryImageId}
+                      starRating={restaurant?.info?.avgRating}
+                      time={restaurant?.info?.sla?.deliveryTime}
+                      areaName={restaurant?.info?.areaName}
+                      DiscountHeader={
+                        restaurant?.info?.aggregatedDiscountInfoV3?.header
+                      }
+                      DiscountSubheader={
+                        restaurant?.info?.aggregatedDiscountInfoV3?.subHeader
+                      }
+                    />
+                  )}
+                </NavLink>
               );
             })
           )}
