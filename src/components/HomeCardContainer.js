@@ -39,7 +39,7 @@ const CardContainer = () => {
       <div className="online-res-container">
         <div className="card-res-heading">
           <h1>Restaurants with online food delivery in Mumbai</h1>
-          <div className="search-box">
+          <div className="search-box flex">
             <input
               type="text"
               className="search"
@@ -68,20 +68,26 @@ const CardContainer = () => {
             <h1 style={{ color: "#fa8427" }}>Sorry No Data Found</h1>
           ) : (
             filterRestaurantData.map((restaurant) => {
+              const {
+                name,
+                cuisines,
+                cloudinaryImageId,
+                avgRating,
+                areaName,
+                id,
+              } = restaurant?.info;
+              const { deliveryTime } = restaurant?.info?.sla;
+
               return (
-                <NavLink
-                  to={"restaurant/" + restaurant?.info?.id}
-                  key={restaurant?.info?.id}
-                  className="nav-link"
-                >
+                <NavLink to={"restaurant/" + id} key={id} className="nav-link">
                   {restaurant?.info?.isOpen ? (
                     <IsOpenHigherOrderFun
-                      resName={restaurant?.info?.name}
-                      cuisines={restaurant?.info?.cuisines}
-                      cardImg={restaurant?.info?.cloudinaryImageId}
-                      starRating={restaurant?.info?.avgRating}
-                      time={restaurant?.info?.sla?.deliveryTime}
-                      areaName={restaurant?.info?.areaName}
+                      resName={name}
+                      cuisines={cuisines}
+                      cardImg={cloudinaryImageId}
+                      starRating={avgRating}
+                      time={deliveryTime}
+                      areaName={areaName}
                       DiscountHeader={
                         restaurant?.info?.aggregatedDiscountInfoV3?.header
                       }
@@ -91,12 +97,12 @@ const CardContainer = () => {
                     />
                   ) : (
                     <Card
-                      resName={restaurant?.info?.name}
-                      cuisines={restaurant?.info?.cuisines}
-                      cardImg={restaurant?.info?.cloudinaryImageId}
-                      starRating={restaurant?.info?.avgRating}
-                      time={restaurant?.info?.sla?.deliveryTime}
-                      areaName={restaurant?.info?.areaName}
+                      resName={name}
+                      cuisines={cuisines}
+                      cardImg={cloudinaryImageId}
+                      starRating={avgRating}
+                      time={deliveryTime}
+                      areaName={areaName}
                       DiscountHeader={
                         restaurant?.info?.aggregatedDiscountInfoV3?.header
                       }

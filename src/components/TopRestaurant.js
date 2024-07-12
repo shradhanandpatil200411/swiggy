@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Card from "./Card";
+import Card, { isOpen } from "./Card";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import Shimmer from "../page/Shimmer";
@@ -46,6 +46,7 @@ function TopRestaurant() {
       slidesToSlide: 1, // optional, default to 1.
     },
   };
+  const IsOpenHigherOrderFun = isOpen(Card);
   // eslint-disable-next-line no-lone-blocks
   {
     return topRestaurant.length === 0 ? (
@@ -75,26 +76,48 @@ function TopRestaurant() {
             itemClass="carousel-item-padding-40-px"
           >
             {topRestaurant.map((topRes) => {
+              const {
+                name,
+                cuisines,
+                cloudinaryImageId,
+                avgRating,
+                areaName,
+                id,
+              } = topRes.info;
+              const { deliveryTime } = topRes?.info?.sla;
               return (
-                <NavLink
-                  to={"restaurant/" + topRes.info.id}
-                  key={topRes.info.id}
-                  className="nav-link"
-                >
-                  <Card
-                    resName={topRes.info.name}
-                    cuisines={topRes.info.cuisines}
-                    cardImg={topRes.info.cloudinaryImageId}
-                    starRating={topRes.info.avgRating}
-                    time={topRes.info.sla.deliveryTime}
-                    areaName={topRes.info.areaName}
-                    DiscountHeader={
-                      topRes?.info?.aggregatedDiscountInfoV3?.header
-                    }
-                    DiscountSubheader={
-                      topRes?.info?.aggregatedDiscountInfoV3?.subHeader
-                    }
-                  />
+                <NavLink to={"restaurant/" + id} key={id} className="nav-link">
+                  {topRes?.info?.isOpen ? (
+                    <IsOpenHigherOrderFun
+                      resName={name}
+                      cuisines={cuisines}
+                      cardImg={cloudinaryImageId}
+                      starRating={avgRating}
+                      time={deliveryTime}
+                      areaName={areaName}
+                      DiscountHeader={
+                        topRes?.info?.aggregatedDiscountInfoV3?.header
+                      }
+                      DiscountSubheader={
+                        topRes?.info?.aggregatedDiscountInfoV3?.subHeader
+                      }
+                    />
+                  ) : (
+                    <Card
+                      resName={name}
+                      cuisines={cuisines}
+                      cardImg={cloudinaryImageId}
+                      starRating={avgRating}
+                      time={deliveryTime}
+                      areaName={areaName}
+                      DiscountHeader={
+                        topRes?.info?.aggregatedDiscountInfoV3?.header
+                      }
+                      DiscountSubheader={
+                        topRes?.info?.aggregatedDiscountInfoV3?.subHeader
+                      }
+                    />
+                  )}
                 </NavLink>
               );
             })}
