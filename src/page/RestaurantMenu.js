@@ -7,9 +7,7 @@ import Carousel from "react-multi-carousel";
 import Shimmer from "./Shimmer";
 
 function RestaurantMenu() {
-  const [resMenu, setResMenu] = useState(null);
-  const [menuOffer, setMenuOffer] = useState([]);
-  const [filterCroutonMenu, setFilterCroutonMenu] = useState([]);
+  const [resMenuData, setResMenuData] = useState(null);
 
   const { id } = useParams();
 
@@ -24,32 +22,36 @@ function RestaurantMenu() {
         id
     );
     const jsonData = await data.json();
-
-    // .................... Filter Offer ............................
-
-    const filterOffer = jsonData.data.cards.filter((f) => {
-      return f.card?.card?.id === "offerCollectionWidget_UX4";
-    });
-
-    // .......................Filter crouton Data...........................
-
-    const filterCroutonMenu = jsonData.data.cards.filter((f) => {
-      return f?.card?.relevance?.sectionId === "POP_UP_CROUTON_MENU";
-    });
-
-    // ..................................................................
-
-    setResMenu(
-      jsonData.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards
-    );
-    setMenuOffer(
-      filterOffer[0]?.card?.card?.gridElements?.infoWithStyle?.offers
-    );
-    setFilterCroutonMenu(filterCroutonMenu[0]?.card?.card?.info);
+    setResMenuData(jsonData);
   };
-  if (resMenu == null) {
+
+  if (resMenuData == null) {
     return <Shimmer />;
   }
+
+  // .................. Filter Category ..............................
+  const filterCategory =
+    resMenuData?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+      (c) => {
+        return (
+          c?.card?.card?.["@type"] ===
+          "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+        );
+      }
+    );
+
+  // .................... Filter Offer ............................
+
+  const filterOffer = resMenuData?.data?.cards?.filter((f) => {
+    return f.card?.card?.id === "offerCollectionWidget_UX4";
+  });
+
+  // .......................Filter crouton Data...........................
+
+  const filterCrouton = resMenuData?.data?.cards?.filter((f) => {
+    return f?.card?.relevance?.sectionId === "POP_UP_CROUTON_MENU";
+  });
+
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -77,7 +79,8 @@ function RestaurantMenu() {
     totalRatingsString,
     sla,
     feeDetails,
-  } = filterCroutonMenu;
+  } = filterCrouton[0]?.card?.card?.info;
+
   return (
     <div className="restaurant-container">
       <div className="small-navbar">
@@ -166,16 +169,18 @@ function RestaurantMenu() {
           dotListclassName="custom-dot-list-style"
           itemclassName="carousel-item-padding-40-px"
         >
-          {menuOffer.map((offer) => {
-            return (
-              <OffersCards
-                key={offer?.info?.restId}
-                offerHeading={offer?.info?.header}
-                coupon={offer?.info?.couponCode}
-                offerLogo={offer?.info?.offerLogo}
-              />
-            );
-          })}
+          {filterOffer[0]?.card?.card?.gridElements?.infoWithStyle?.offers.map(
+            (offer) => {
+              return (
+                <OffersCards
+                  key={offer?.info?.restId}
+                  offerHeading={offer?.info?.header}
+                  coupon={offer?.info?.couponCode}
+                  offerLogo={offer?.info?.offerLogo}
+                />
+              );
+            }
+          )}
         </Carousel>
       </div>
       <div className="menu-heading">
@@ -204,7 +209,7 @@ function RestaurantMenu() {
         </div>
       </div>
       <div className="menu-cards">
-        {resMenu.map((resMenuItem, index) => {
+        {filterCategory?.map((resMenuItem, index) => {
           return <ResMenuCards resMenuData={resMenuItem} key={index} />;
         })}
       </div>

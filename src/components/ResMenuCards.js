@@ -1,36 +1,20 @@
 import React from "react";
+import downArrow from "../img/icon/keyboard_arrow_down_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg";
 
 function ResMenuCards({ resMenuData }) {
-  // console.log(resMenuData, "resMenuData");
-  const { title } = resMenuData?.card?.card;
-  // const type = _.get(resMenuData.card.card, "@type");
+  console.log(resMenuData, "resMenuData");
+  const { title, itemCards } = resMenuData?.card?.card;
 
   return (
-    <div className="res-menu-card">
-      <div className="res-menu-heading">
-        <span>{title}</span>
+    <div className="py-8 px-4 mt-5 cursor-pointer shadow-lg">
+      <div className="res-menu-heading flex justify-between">
+        <span className="font-bold">
+          {title} ({itemCards.length})
+        </span>
+        <span>
+          <img src={downArrow} alt="downArrow" />
+        </span>
       </div>
-      {/* <div className="card-left">
-        <div className="veg-non-logo">
-          <img src="" alt="veg-non-logo" />
-          <div className="bestseller-tag">Bestseller</div>
-        </div>
-        <div className="dish-name">
-          <h1>Upma</h1>
-        </div>
-        <div className="price">
-          <h2>92Rs</h2>
-        </div>
-        <div className="menu-card-rating">
-          <h2>4.7</h2>
-        </div>
-      </div>
-      <div className="card-right">
-        <div className="dish-img">
-          <img src="" alt="dish-img" />
-          <button>ADD</button>
-        </div>
-      </div> */}
     </div>
   );
 }
