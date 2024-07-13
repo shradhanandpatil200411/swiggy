@@ -8,6 +8,7 @@ import Shimmer from "./Shimmer";
 
 function RestaurantMenu() {
   const [resMenuData, setResMenuData] = useState(null);
+  const [showIndex, setShowIndex] = useState(null);
 
   const { id } = useParams();
 
@@ -210,7 +211,14 @@ function RestaurantMenu() {
       </div>
       <div className="menu-cards">
         {filterCategory?.map((resMenuItem, index) => {
-          return <ResMenuCards resMenuData={resMenuItem} key={index} />;
+          return (
+            <ResMenuCards
+              resMenuData={resMenuItem}
+              key={index}
+              show={showIndex === index ? true : false}
+              showItem={() => setShowIndex(index)}
+            />
+          );
         })}
       </div>
     </div>

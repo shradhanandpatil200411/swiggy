@@ -67,7 +67,7 @@ function CarouselMenu() {
           dotListClass="custom-dot-list-style"
           itemClass="carousel-item-padding-40-px"
         >
-          {menuData.map((item) => {
+          {menuData?.map((item) => {
             return <HederMenuCard key={item.id} img={item.imageId} />;
           })}
         </Carousel>
