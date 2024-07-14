@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from "react";
-import OffersCards from "../components/OffersCards";
-import ResMenuCards from "../components/ResMenuCards";
 import { NavLink, useParams } from "react-router-dom";
-import star from "../img/icon/icons8-army-star-30.png";
-import Carousel from "react-multi-carousel";
 import Shimmer from "./Shimmer";
+import ResMenuBanner from "../components/ResMenuBanner";
+import ResMenuOfferCard from "../components/ResMenuOfferCard";
+import Menu from "../components/Menu";
 
 function RestaurantMenu() {
   const [resMenuData, setResMenuData] = useState(null);
-  const [showIndex, setShowIndex] = useState(null);
-
   const { id } = useParams();
 
   useEffect(() => {
@@ -53,24 +50,6 @@ function RestaurantMenu() {
     return f?.card?.relevance?.sectionId === "POP_UP_CROUTON_MENU";
   });
 
-  const responsive = {
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 3,
-      slidesToSlide: 3, // optional, default to 1.
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 2,
-      slidesToSlide: 2, // optional, default to 1.
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1,
-      slidesToSlide: 1, // optional, default to 1.
-    },
-  };
-
   const {
     name,
     areaName,
@@ -97,132 +76,24 @@ function RestaurantMenu() {
       <div className="resHeading">
         <h1>{name}</h1>
       </div>
-      <div className="restaurant-menu-card">
-        <div className="rating">
-          <div className="starImg">
-            <span>
-              <img src={star} alt="star" />
-            </span>
-            <span>
-              <h3 className="menu-rating">
-                {avgRatingString}({totalRatingsString})
-              </h3>
-            </span>
-          </div>
-          <div className="const-for-two">
-            <h2>{costForTwoMessage}</h2>
-          </div>
-        </div>
-        <div className="res-category">
-          <h3>{cuisines?.join(", ")}</h3>
-        </div>
-        <div className="delivery-time">
-          <div className="delivery-loc-logo">
-            <div className="start-point"></div>
-            <div className="middle-point"></div>
-            <div className="end-point"></div>
-          </div>
-          <div>
-            <div className="rest-loc">
-              <span className="outlet">
-                <h2>Outlet</h2>
-              </span>
-              <span className="loc">{areaName}</span>
-            </div>
-            <h2 className="time">{sla?.slaString}</h2>
-          </div>
-        </div>
-        <div className="delivery-charges">
-          <div className="delivery-logo">
-            <img
-              src={
-                "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_40,h_40/" +
-                feeDetails?.icon
-              }
-              alt="delivery-logo"
-            />
-          </div>
-          <h3 className="charges">
-            {sla?.lastMileTravelString} | {feeDetails?.totalFee / 100} Rs
-            Delivery fee will apply
-          </h3>
-        </div>
+      <div>
+        <ResMenuBanner
+          areaName={areaName}
+          avgRatingString={avgRatingString}
+          costForTwoMessage={costForTwoMessage}
+          cuisines={cuisines}
+          totalRatingsString={totalRatingsString}
+          sla={sla}
+          feeDetails={feeDetails}
+        />
       </div>
-      <div className="deals-offers">
-        <div className="offer-heading">
-          <h1>Deals for you</h1>
-        </div>
-        <Carousel
-          swipeable={true}
-          draggable={true}
-          showDots={true}
-          responsive={responsive}
-          ssr={true} // means to render carousel on server-side.
-          infinite={true}
-          // autoPlay={this.props.deviceType !== "mobile" ? true : false}
-          autoPlaySpeed={2000}
-          keyBoardControl={true}
-          customTransition="all .5"
-          transitionDuration={500}
-          containerclassName="carousel-container"
-          removeArrowOnDeviceType={["tablet", "mobile"]}
-          // deviceType={this.props.deviceType}
-          dotListclassName="custom-dot-list-style"
-          itemclassName="carousel-item-padding-40-px"
-        >
-          {filterOffer[0]?.card?.card?.gridElements?.infoWithStyle?.offers.map(
-            (offer) => {
-              return (
-                <OffersCards
-                  key={offer?.info?.restId}
-                  offerHeading={offer?.info?.header}
-                  coupon={offer?.info?.couponCode}
-                  offerLogo={offer?.info?.offerLogo}
-                />
-              );
-            }
-          )}
-        </Carousel>
+      <div>
+        <ResMenuOfferCard filterOffer={filterOffer} />
       </div>
-      <div className="menu-heading">
-        <h2>~MENU~</h2>
-      </div>
-      <div className="menu-search-bar">
-        <input type="text" placeholder="Search for dishes" />
-      </div>
-      <div className="menu-filter">
-        <div className="filter">
-          <span>Veg</span>
-          <label className="switch">
-            <input type="checkbox" />
-            <span className="slider"></span>
-          </label>
-        </div>
-        <div className="filter">
-          <span>Non-Veg</span>
-          <label className="switch">
-            <input type="checkbox" />
-            <span className="slider non-veg"></span>
-          </label>
-        </div>
-        <div className="bestseller filter">
-          <span>Bestseller</span>
-        </div>
-      </div>
-      <div className="menu-cards">
-        {filterCategory?.map((resMenuItem, index) => {
-          return (
-            <ResMenuCards
-              resMenuData={resMenuItem}
-              key={index}
-              show={showIndex === index ? true : false}
-              showItem={() => setShowIndex(index)}
-            />
-          );
-        })}
+      <div>
+        <Menu filterCategory={filterCategory} />
       </div>
     </div>
   );
 }
-
 export default RestaurantMenu;
